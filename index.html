@@ -6,15 +6,50 @@
     <title>Document</title>
 </head>
 <body>
-    <!--Creating a counter using basic DOM(Docue=ment Object Model)-->
+    <p>button1 (state-component)</p>
+    <div id="buttonparent">
+    </div>
+<br>
+<br>
     <script>
+        //Creating a counter using basic DOM(Docue=ment Object Model)
+        
         function ButtonPressed(){
             buttoncontent = document.getElementById('btn').innerHTML  
             currentcount = buttoncontent.split(" ")[1]
             newcount = parseInt(currentcount) + 1
             document.getElementById('btn').innerHTML= "counter " + newcount
         }
+        
+        //Creating a click counter using react state component logic
+
+        let state = {       //state is js object that changes
+            count: 0,
+            color: "blue",
+        }
+        function onButtonPress(){  //this function increasec counter by 1 when button is pressed
+            state.count++
+            buttonReRender()
+        }
+
+        function buttonReRender(){      //this function delets the previous button content and returns incremented count and color to the button
+            document.getElementById("buttonparent").innerHTML = ""
+            const component = buttonComponent(state.count, state.color)
+            document.getElementById("buttonparent").appendChild(component)
+
+        }
+        function buttonComponent(count, color){     //this function adds new count and color
+            const button = document.createElement("button")
+            button.innerHTML= "counter " + count
+            button.onclick = onButtonPress
+            button.style.color = count >= 1 ? "blue" : "black"
+            return button;
+        }
+        buttonReRender()
     </script>
+    
+    
+     <p>button2 (DOM)</p>
     <button id="btn" onclick="ButtonPressed()">counter 0</button>
 </body>
 </html>
