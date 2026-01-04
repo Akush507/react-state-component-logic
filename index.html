@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Creating a counter using basic DOM(Docue=ment Object Model)-->
+    <script>
+        function ButtonPressed(){
+            buttoncontent = document.getElementById('btn').innerHTML  
+            currentcount = buttoncontent.split(" ")[1]
+            newcount = parseInt(currentcount) + 1
+            document.getElementById('btn').innerHTML= "counter " + newcount
+        }
+    </script>
+    <button id="btn" onclick="ButtonPressed()">counter 0</button>
+</body>
+</html>
